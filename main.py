@@ -1,24 +1,22 @@
+import os
+import uvicorn
 from fastapi import FastAPI
-from sqlalchemy import create_engine, text
+from routes import products, db_connection, users
+
+HOST = os.getenv("VM_SERVER_IP", "0.0.0.0")
+print(HOST)
+
+app = FastAPI(title="Hiraoka SISOP", version="0.0.1")
+
+# app.include_router(users.router, prefix="/api/v1")
+# app.include_router(products.router, prefix="/api/v1") 
+app.include_router(db_connection.router, prefix="/api/v1")
 
 
-app = FastAPI()
-
-MYSQL_USER = "administrador"
-MYSQL_PASSWORD = "administrador"
-MYSQL_HOST = "4.174.128.233"
-MYSQL_PORT = "3306"   
-MYSQL_DB = "hiraoka"
-
-DATABASE_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
-engine = create_engine(DATABASE_URL, echo=True)
+@app.get("/")
+def hello():
+    return{ "message": "Hello World!"}
 
 
-@app.get("/test-db")
-def test_db_connection():
-    try:
-        with engine.connect() as connection:
-            result = connection.execute(text("SELECT 1"))
-            return {"status": "success", "result": [row for row in result]}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
+if __name__ == "__main__":
+    uvicorn.run("main:app", host=HOST, port=8000, log_level="info", reload=True)
