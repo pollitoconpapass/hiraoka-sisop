@@ -16,7 +16,3 @@ app.include_router(db_connection.router, prefix="/api/v1")
 @app.get("/")
 def hello():
     return{ "message": "Hello World!"}
-
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host=HOST, port=8000, log_level="info", reload=True)
