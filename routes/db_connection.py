@@ -11,9 +11,7 @@ MYSQL_HOST = os.getenv("MYSQL_HOST")
 MYSQL_PORT = 3306
 MYSQL_DB = os.getenv("MYSQL_DB")
 
-print(MYSQL_PORT)
-
-DATABASE_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{int(MYSQL_PORT)}/{MYSQL_DB}"
+DATABASE_URL = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
 engine = create_engine(DATABASE_URL, echo=True)
 
 
@@ -22,7 +20,6 @@ def test_db_connection():
     try:
         with engine.connect() as connection:
             result = connection.execute(text("SELECT 1"))
-            # Solución 1: Convertir Row a tupla/lista
             data = [tuple(row) for row in result]
             return {"status": "success", "result": data}
     except Exception as e:

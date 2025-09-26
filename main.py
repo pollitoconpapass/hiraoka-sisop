@@ -3,8 +3,6 @@ import uvicorn
 from fastapi import FastAPI
 from routes import products, db_connection, users
 
-HOST = os.getenv("VM_SERVER_IP", "0.0.0.0")
-print(HOST)
 
 app = FastAPI(title="Hiraoka SISOP", version="0.0.1")
 
