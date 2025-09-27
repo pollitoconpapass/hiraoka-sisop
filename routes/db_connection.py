@@ -42,6 +42,46 @@ def get_all_tables():
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
+@router.get("/tables/all/data")
+def get_all_tables_data(limit: int = 10) -> Dict[str, Any]:
+    try:
+        with engine.connect() as connection:
+            tables_result = connection.execute(
+                text("SELECT table_name FROM information_schema.tables WHERE table_schema = :db"),
+                {"db": MYSQL_DB}
+            )
+            tables = [row[0] for row in tables_result]
+
+            if limit > 100:
+                limit = 100
+
+            all_data = {}
+            for table in tables:
+                result = connection.execute(text(f"SELECT * FROM {table} LIMIT :limit"), {"limit": limit})
+                data = [dict(row._mapping) for row in result]
+
+                count_result = connection.execute(text(f"SELECT COUNT(*) FROM {table}"))
+                total_rows = count_result.scalar()
+
+                all_data[table] = {
+                    "total_rows": total_rows,
+                    "returned_rows": len(data),
+                    "limit": limit,
+                    "data": data
+                }
+
+            return {
+                "status": "success",
+                "tables": all_data
+            }
+
+    except SQLAlchemyError as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error al obtener datos de las tablas: {str(e)}"
+        )
+
+
 
 @router.get("/table/{table_name}/data")
 def get_table_data(table_name: str, limit: int = 10) -> Dict[str, Any]:
