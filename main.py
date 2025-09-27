@@ -11,6 +11,6 @@ app = FastAPI(title="Hiraoka SISOP", version="0.0.1")
 app.include_router(db_connection.router, prefix="/api/v1")
 
 
-@app.get("/")
+@app.get("/hello")
 def hello():
     return{ "message": "Hello World!"}
