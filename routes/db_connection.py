@@ -1,6 +1,8 @@
 import os
+from typing import Dict, Any, List
 from fastapi import APIRouter, HTTPException
 from sqlalchemy import create_engine, text
+from sqlalchemy.exc import SQLAlchemyError
 
 router = APIRouter(prefix="/db-connection", tags=["users"])
 
@@ -39,3 +41,43 @@ def get_all_tables():
             }
     except Exception as e:
         return {"status": "error", "message": str(e)}
+
+
+@router.get("/table/{table_name}/data")
+def get_table_data(table_name: str, limit: int = 10) -> Dict[str, Any]:
+    try:
+        with engine.connect() as connection:
+            table_check = connection.execute(
+                text("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = :db AND table_name = :table"),
+                {"db": MYSQL_DB, "table": table_name}
+            )
+            
+            if table_check.scalar() == 0:
+                raise HTTPException(status_code=404, detail=f"La tabla '{table_name}' no existe")
+            
+            if limit > 100:  
+                limit = 100
+                
+            result = connection.execute(text(f"SELECT * FROM {table_name} LIMIT :limit"), {"limit": limit})
+            
+            data = [dict(row._mapping) for row in result]
+            
+            count_result = connection.execute(text(f"SELECT COUNT(*) FROM {table_name}"))
+            total_rows = count_result.scalar()
+            
+            return {
+                "status": "success",
+                "table": table_name,
+                "total_rows": total_rows,
+                "returned_rows": len(data),
+                "limit": limit,
+                "data": data
+            }
+            
+    except HTTPException:
+        raise
+    except SQLAlchemyError as e:
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error al obtener datos de la tabla: {str(e)}"
+        )
