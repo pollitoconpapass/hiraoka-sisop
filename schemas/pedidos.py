@@ -21,6 +21,7 @@ class PedidoOut(BaseModel):
     subtotal: float
     total: float
     estado: str
+    metodo_pago: str
     fecha_pedido: datetime
 
     class Config:
