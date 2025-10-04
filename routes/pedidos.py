@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
 from sqlalchemy.orm import Session
 from database import get_db
 from models.pedidos import Pedidos, DetallesPedido
@@ -6,6 +6,8 @@ from models.products import Producto
 from schemas.pedidos import PedidoCreate, PedidoOut
 from typing import List
 import uuid
+import asyncio
+from datetime import datetime
 
 router = APIRouter(prefix="/pedidos", tags=["Pedidos"])
 
@@ -15,9 +17,17 @@ def listar_pedidos(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)
     return db.query(Pedidos).offset(skip).limit(limit).all()
 
 
+# Update the order status after a delay (2 min)
+async def actualizar_estado_pedido(pedido_id: int, db: Session):
+    await asyncio.sleep(120) 
+    pedido = db.query(Pedidos).filter(Pedidos.id == pedido_id).first()
+    if pedido and pedido.estado == 'pendiente':
+        pedido.estado = 'confirmado'
+        db.commit()
+
 # Create a new order
 @router.post("/", response_model=PedidoOut)
-def crear_pedido(pedido_data: PedidoCreate, db: Session = Depends(get_db)):
+async def crear_pedido(pedido_data: PedidoCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     subtotal = 0
     for item in pedido_data.items:
         producto = db.query(Producto).filter(Producto.id == item.id_producto).first()
@@ -32,7 +42,9 @@ def crear_pedido(pedido_data: PedidoCreate, db: Session = Depends(get_db)):
         id_direccion_facturacion=pedido_data.id_direccion_facturacion,
         subtotal=subtotal,
         total=subtotal, # -> no taxes no shipping
-        metodo_pago=pedido_data.metodo_pago
+        metodo_pago=pedido_data.metodo_pago,
+        estado='pendiente', # -> specifically to pendiente...
+        fecha_pedido=datetime.now()
     )
 
     db.add(nuevo_pedido)
@@ -54,6 +66,10 @@ def crear_pedido(pedido_data: PedidoCreate, db: Session = Depends(get_db)):
         producto.stock -= item.cantidad
 
     db.commit()
+    
+    # Add background task to update order status
+    background_tasks.add_task(actualizar_estado_pedido, nuevo_pedido.id, db)
+    
     return nuevo_pedido
 
 
