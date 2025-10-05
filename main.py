@@ -6,6 +6,7 @@ from routes import products, db_connection, users, pedidos, direcciones
 app = FastAPI(title="Hiraoka SISOP", version="0.0.1")
 
 origins = [
+    "http://40.82.176.100",
     "http://localhost",
     "http://localhost:8000",
     "http://localhost:3000",
