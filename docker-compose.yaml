@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: container-app
+    restart: always
+    build: .
+    ports:
+      - "3000:5100"
+    environment:
+      - MONGO_URL=mongodb://database:27017/hiraoka
+    depends_on:
+      - database
+    networks:
+      - app-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  database:
+    container_name: container-database
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    external: true
+    name: d0a0133e571f4bfc097b8703fc89ca4e1698a361ce0ff83c232b25061a965206
+    
