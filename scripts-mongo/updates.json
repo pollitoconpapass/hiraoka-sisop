@@ -1,0 +1,90 @@
+// Ajustar el validator de orders
+use hiraoka
+db.runCommand({
+  collMod: "orders",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["user_id", "items", "payment"],
+      properties: {
+        _id: { bsonType: "objectId" },
+        user_id: { bsonType: "objectId" },
+        items: {
+          bsonType: "array",
+          minItems: 1,
+          items: {
+            bsonType: "object",
+            required: ["product_id", "name", "quantity", "unit_price"],
+            properties: {
+              product_id: { bsonType: "objectId" },
+              name: { bsonType: "string" },
+              photo: { bsonType: ["string", "null"] },
+              quantity: { bsonType: ["int", "double"], minimum: 1 },
+              unit_price: { bsonType: ["int", "double"] },
+              currency: { bsonType: ["string", "null"] },
+              subtotal: { bsonType: ["int", "double", "null"] }
+            }
+          }
+        },
+        totals: {
+          bsonType: "object",
+          properties: {
+            subtotal: { bsonType: ["int", "double"] },
+            discount: { bsonType: ["int", "double", "null"] },
+            shipping: { bsonType: ["int", "double", "null"] },
+            tax: { bsonType: ["int", "double", "null"] },
+            grand_total: { bsonType: ["int", "double"] }
+          }
+        },
+        order_status: { enum: ["Verificado", "En Proceso", "Cancelado"] },
+        payment: {
+          bsonType: "object",
+          required: ["method"],
+          properties: {
+            method: { enum: ["tarjeta", "yape", "plin", "transferencia", "efectivo", "otro"] },
+            transaction_id: { bsonType: ["string", "null"] },
+            paid_at: { bsonType: ["date", "null"] }
+          }
+        },
+        notes: { bsonType: ["string", "null"] },
+        created_at: { bsonType: "date" },
+        updated_at: { bsonType: ["date", "null"] }
+      }
+    }
+  },
+  validationLevel: "moderate"
+})
+
+// Actualizar validator de productos
+db.runCommand({
+  collMod: "products",
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["sku", "name", "price", "images"],
+      properties: {
+        _id: { bsonType: "objectId" },
+        sku: { bsonType: "string" },
+        name: { bsonType: "string" },
+        brand: { bsonType: ["string", "null"] },
+        category_id: { bsonType: ["objectId", "null"] },
+        price: { bsonType: ["double", "int"] },
+        specs: { bsonType: ["object", "null"] },
+        images: { bsonType: "array", minItems: 1, items: { bsonType: "string" } },
+        primary_image: { bsonType: ["string", "null"] },
+        ratings: { 
+          bsonType: ["object", "null"],
+          properties: {
+            avg: { bsonType: ["double", "int", "null"] },
+            count: { bsonType: ["int", "null"] },
+            breakdown: { bsonType: ["object", "null"] }
+          }
+        },
+        reviews_count: { bsonType: ["int", "null"] },
+        created_at: { bsonType: "date" },
+        updated_at: { bsonType: ["date", "null"] }
+      }
+    }
+  },
+  validationLevel: "moderate"
+})

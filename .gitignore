@@ -1,5 +1,9 @@
+# Python 
 .env
 **/__pycache__
 .DS_Store
 venv
 env
+
+# NodeJS
+node_modules
