@@ -1,4 +1,4 @@
-// Ajustar el validator de orders
+# Ajustar el validator de orders
 use hiraoka
 db.runCommand({
   collMod: "orders",
@@ -55,7 +55,7 @@ db.runCommand({
   validationLevel: "moderate"
 })
 
-// Actualizar validator de productos
+# Actualizar validator de productos
 db.runCommand({
   collMod: "products",
   validator: {
