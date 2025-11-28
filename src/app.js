@@ -3,6 +3,7 @@ import mongoose from "./database.js"
 import dotenv from "dotenv"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
+import cors from "cors"
 import categoryRoute from './routes/categories.js'
 import commentRoute from './routes/comments.js'
 import orderRoute from './routes/orders.js'
@@ -19,6 +20,7 @@ dotenv.config({
 
 // Inicializacion de express
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 // Endpoints generales
