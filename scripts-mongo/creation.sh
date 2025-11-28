@@ -1,8 +1,8 @@
 use hiraoka
 
-// ============================
-// users
-// ============================
+# ============================
+# users
+# ============================
 db.createCollection("users", {
   validator: {
     $jsonSchema: {
@@ -25,9 +25,9 @@ db.createCollection("users", {
 db.users.createIndex({ email: 1 }, { unique: true });
 db.users.createIndex({ role: 1 });
 
-// ============================
-// categories
-// ============================
+# ============================
+# categories
+# ============================
 db.createCollection("categories", {
   validator: {
     $jsonSchema: {
@@ -45,9 +45,9 @@ db.createCollection("categories", {
 db.categories.createIndex({ name: 1 }, { unique: false });
 db.categories.createIndex({ parent_id: 1 });
 
-// ============================
-// products
-// ============================
+# ============================
+# products
+# ============================
 db.createCollection("products", {
   validator: {
     $jsonSchema: {
@@ -83,9 +83,9 @@ db.products.createIndex({ sku: 1 }, { unique: true });
 db.products.createIndex({ name: "text" }, { default_language: "spanish" });
 db.products.createIndex({ category_id: 1 });
 
-// ============================
-// reviews
-// ============================
+# ============================
+# reviews
+# ============================
 db.createCollection("reviews", {
   validator: {
     $jsonSchema: {
@@ -122,9 +122,9 @@ db.reviews.createIndex({ product_id: 1, created_at: -1 });
 db.reviews.createIndex({ rating: 1 });
 db.reviews.createIndex({ status: 1 });
 
-// ============================
-// comments
-// ============================
+# ============================
+# comments
+# ============================
 db.createCollection("comments", {
   validator: {
     $jsonSchema: {
@@ -148,9 +148,9 @@ db.comments.createIndex({ review_id: 1, created_at: 1 });
 db.comments.createIndex({ product_id: 1, created_at: 1 });
 db.comments.createIndex({ parent_id: 1 });
 
-// ============================
-// review_votes
-// ============================
+# ============================
+# review_votes
+# ============================
 db.createCollection("review_votes", {
   validator: {
     $jsonSchema: {
@@ -168,9 +168,9 @@ db.createCollection("review_votes", {
 });
 db.review_votes.createIndex({ review_id: 1, user_id: 1 }, { unique: true });
 
-// ============================
-// orders
-// ============================
+# ============================
+# orders
+# ============================
 db.createCollection("orders", {
   validator: {
     $jsonSchema: {

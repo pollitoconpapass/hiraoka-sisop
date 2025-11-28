@@ -1,6 +1,6 @@
 use hiraoka
 
-// 1) Categorías (opcional)
+# 1) Categorías (opcional)
 db.categories.insertMany([
   { name: "Televisores" },
   { name: "Laptops" },
@@ -10,7 +10,7 @@ db.categories.insertMany([
   { name: "Accesorios" }
 ]);
 
-// 2) 30 productos (category_id es opcional → null)
+# 2) 30 productos (category_id es opcional → null)
 db.products.insertOne({
   sku: "SKU-0001",
   name: 'Smart TV 55" 4K',
@@ -30,7 +30,7 @@ db.products.insertOne({
   sku: "SKU-0002",
   name: 'Smart TV 65" 4K',
   brand: "HkBrand",
-  category_id: ObjectId("691a0a9691cf91bfe0ec51db"), // Televisores
+  category_id: ObjectId("691a0a9691cf91bfe0ec51db"), # Televisores
   price: 2999.9,
   specs: {},
   images: ["/imgs/product-02.jpg"],
@@ -41,12 +41,12 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0003
+# 0003
 db.products.insertOne({
   sku: "SKU-0003",
   name: 'Smart TV 43" FHD',
   brand: "HkBrand",
-  category_id: ObjectId("691a0a9691cf91bfe0ec51db"), // Televisores
+  category_id: ObjectId("691a0a9691cf91bfe0ec51db"), # Televisores
   price: 899.9,
   specs: {},
   images: ["/imgs/product-03.jpg"],
@@ -57,7 +57,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0004
+# 0004
 db.products.insertOne({
   sku: "SKU-0004",
   name: 'Laptop 14" Ryzen 7',
@@ -73,7 +73,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0005
+# 0005
 db.products.insertOne({
   sku: "SKU-0005",
   name: 'Laptop 15" i7 16GB',
@@ -89,7 +89,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0006
+# 0006
 db.products.insertOne({
   sku: "SKU-0006",
   name: 'Ultrabook 13" i5',
@@ -105,7 +105,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0007
+# 0007
 db.products.insertOne({
   sku: "SKU-0007",
   name: "Auriculares Inalámbricos Pro",
@@ -121,7 +121,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0008
+# 0008
 db.products.insertOne({
   sku: "SKU-0008",
   name: "Parlante Bluetooth 30W",
@@ -137,7 +137,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0009
+# 0009
 db.products.insertOne({
   sku: "SKU-0009",
   name: "Barra de Sonido 2.1",
@@ -153,7 +153,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0010
+# 0010
 db.products.insertOne({
   sku: "SKU-0010",
   name: "Refrigeradora 300L No Frost",
@@ -169,7 +169,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0011
+# 0011
 db.products.insertOne({
   sku: "SKU-0011",
   name: "Cocina 5 Hornillas",
@@ -185,7 +185,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0012
+# 0012
 db.products.insertOne({
   sku: "SKU-0012",
   name: "Microondas 25L",
@@ -201,7 +201,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0013
+# 0013
 db.products.insertOne({
   sku: "SKU-0013",
   name: "Consola Gaming Pro",
@@ -217,7 +217,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0014
+# 0014
 db.products.insertOne({
   sku: "SKU-0014",
   name: "Control Inalámbrico",
@@ -233,7 +233,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0015
+# 0015
 db.products.insertOne({
   sku: "SKU-0015",
   name: "Silla Gamer RGB",
@@ -249,7 +249,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0016
+# 0016
 db.products.insertOne({
   sku: "SKU-0016",
   name: "Mouse Inalámbrico",
@@ -265,7 +265,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0017
+# 0017
 db.products.insertOne({
   sku: "SKU-0017",
   name: "Teclado Mecánico",
@@ -281,7 +281,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0018
+# 0018
 db.products.insertOne({
   sku: "SKU-0018",
   name: 'Monitor 27" 2K 144Hz',
@@ -297,7 +297,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0019
+# 0019
 db.products.insertOne({
   sku: "SKU-0019",
   name: "Smartwatch Deportivo",
@@ -313,7 +313,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0020
+# 0020
 db.products.insertOne({
   sku: "SKU-0020",
   name: "Cámara de Seguridad Wi-Fi",
@@ -329,7 +329,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0021
+# 0021
 db.products.insertOne({
   sku: "SKU-0021",
   name: 'Tablet 10" 64GB',
@@ -345,7 +345,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0022
+# 0022
 db.products.insertOne({
   sku: "SKU-0022",
   name: "Disco SSD 1TB",
@@ -361,7 +361,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0023
+# 0023
 db.products.insertOne({
   sku: "SKU-0023",
   name: "Memoria RAM 16GB",
@@ -377,7 +377,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0024
+# 0024
 db.products.insertOne({
   sku: "SKU-0024",
   name: "Tarjeta Gráfica 8GB",
@@ -393,7 +393,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0025
+# 0025
 db.products.insertOne({
   sku: "SKU-0025",
   name: "Aspiradora Robot",
@@ -409,7 +409,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0026
+# 0026
 db.products.insertOne({
   sku: "SKU-0026",
   name: "Licuadora 1.5L",
@@ -425,7 +425,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0027
+# 0027
 db.products.insertOne({
   sku: "SKU-0027",
   name: "Freidora de Aire 5L",
@@ -441,7 +441,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0028
+# 0028
 db.products.insertOne({
   sku: "SKU-0028",
   name: "Cargador Rápido 65W",
@@ -457,7 +457,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0029
+# 0029
 db.products.insertOne({
   sku: "SKU-0029",
   name: "Cable USB-C 2m",
@@ -473,7 +473,7 @@ db.products.insertOne({
   updated_at: null
 });
 
-// 0030
+# 0030
 db.products.insertOne({
   sku: "SKU-0030",
   name: "Estabilizador de Voltaje",
@@ -493,12 +493,12 @@ db.products.insertOne({
 
 
 
-// 3) Usuarios (2 clientes con actividad + 1 admin sin actividad)
+# 3) Usuarios (2 clientes con actividad + 1 admin sin actividad)
 db.users.insertMany([
   {
     name: "Juan Pérez",
     email: "juan.perez@example.com",
-    password_hash: "$2b$10$abcDEFghiJKLmnopqrstu", // string corto "tipo bcrypt"
+    password_hash: "$2b$10$abcDEFghiJKLmnopqrstu", # string corto "tipo bcrypt"
     role: "cliente",
     status: "active",
     created_at: new Date("2025-11-08T00:00:00Z"),
@@ -507,7 +507,7 @@ db.users.insertMany([
   {
     name: "María López",
     email: "maria.lopez@example.com",
-    password_hash: "$2b$12$stuVWXyzABCD123456789", // otro string corto
+    password_hash: "$2b$12$stuVWXyzABCD123456789", # otro string corto
     role: "cliente",
     status: "active",
     created_at: new Date("2025-11-08T00:00:00Z"),
@@ -516,17 +516,17 @@ db.users.insertMany([
   {
     name: "Admin Hiraoka",
     email: "admin@hiraoka.com",
-    password_hash: "$2a$08$qwertyASDFghjkZXCVbnm", // y otro más
+    password_hash: "$2a$08$qwertyASDFghjkZXCVbnm", # y otro más
     role: "admin",
     status: "active",
     created_at: new Date("2025-11-08T00:00:00Z"),
     updated_at: null
   }
 ]);
-// 4) Compras (2 órdenes por cliente)
+# 4) Compras (2 órdenes por cliente)
 use hiraoka;
 
-// --- Resolver _id de usuarios ---
+# --- Resolver _id de usuarios ---
 const juanDoc  = db.users.findOne({ email: "juan.perez@example.com" }, { _id: 1 });
 const mariaDoc = db.users.findOne({ email: "maria.lopez@example.com" }, { _id: 1 });
 if (!juanDoc)  { throw new Error("No existe usuario Juan Pérez"); }
@@ -534,14 +534,14 @@ if (!mariaDoc) { throw new Error("No existe usuario María López"); }
 const JUAN  = juanDoc._id;
 const MARIA = mariaDoc._id;
 
-// --- Helper para resolver _id de productos por SKU ---
+# --- Helper para resolver _id de productos por SKU ---
 function PID(sku) {
   const doc = db.products.findOne({ sku }, { _id: 1 });
   if (!doc) { throw new Error("SKU no encontrado: " + sku); }
   return doc._id;
 }
 
-// Prefetch de SKUs usados
+# Prefetch de SKUs usados
 const P0001 = PID("SKU-0001");
 const P0016 = PID("SKU-0016");
 const P0004 = PID("SKU-0004");
@@ -549,9 +549,9 @@ const P0002 = PID("SKU-0002");
 const P0009 = PID("SKU-0009");
 const P0020 = PID("SKU-0020");
 
-// --- Órdenes ---
+# --- Órdenes ---
 
-// Juan #1
+# Juan #1
 db.orders.insertOne({
   user_id: JUAN,
   items: [
@@ -566,7 +566,7 @@ db.orders.insertOne({
   updated_at: null
 });
 
-// Juan #2
+# Juan #2
 db.orders.insertOne({
   user_id: JUAN,
   items: [
@@ -580,7 +580,7 @@ db.orders.insertOne({
   updated_at: null
 });
 
-// María #1
+# María #1
 db.orders.insertOne({
   user_id: MARIA,
   items: [
@@ -595,7 +595,7 @@ db.orders.insertOne({
   updated_at: null
 });
 
-// María #2
+# María #2
 db.orders.insertOne({
   user_id: MARIA,
   items: [
@@ -610,9 +610,9 @@ db.orders.insertOne({
 });
 
 
-// 5) Reseñas (2 por cada cliente)
+# 5) Reseñas (2 por cada cliente)
 
-// Juan #1 sobre SKU-0001
+# Juan #1 sobre SKU-0001
 db.reviews.insertOne({
   product_id: P0001,
   user_id: JUAN,
@@ -629,7 +629,7 @@ db.reviews.insertOne({
   updated_at: null
 });
 
-// Juan #2 sobre SKU-0004
+# Juan #2 sobre SKU-0004
 db.reviews.insertOne({
   product_id: P0004,
   user_id: JUAN,
@@ -646,7 +646,7 @@ db.reviews.insertOne({
   updated_at: null
 });
 
-// María #1 sobre SKU-0002
+# María #1 sobre SKU-0002
 db.reviews.insertOne({
   product_id: P0002,
   user_id: MARIA,
@@ -663,7 +663,7 @@ db.reviews.insertOne({
   updated_at: null
 });
 
-// María #2 sobre SKU-0009
+# María #2 sobre SKU-0009
 db.reviews.insertOne({
   product_id: P0009,
   user_id: MARIA,
@@ -680,22 +680,22 @@ db.reviews.insertOne({
   updated_at: null
 });
 
-// 6) Comentarios (1 por cada cliente, sobre una de sus reseñas)
-// --- Resolver productos ---
+# 6) Comentarios (1 por cada cliente, sobre una de sus reseñas)
+# --- Resolver productos ---
 const tv55  = db.products.findOne({ sku: "SKU-0001" }, { _id: 1 });
 const tv65  = db.products.findOne({ sku: "SKU-0002" }, { _id: 1 });
 if (!tv55) { throw new Error("SKU-0001 no encontrado"); }
 if (!tv65) { throw new Error("SKU-0002 no encontrado"); }
 
-// --- Resolver reseñas objetivo ---
+# --- Resolver reseñas objetivo ---
 const revJuanTV55 = db.reviews.findOne({ user_id: JUAN,  product_id: tv55._id, title: "Excelente compra" }, { _id: 1 });
 const revMariaTV65 = db.reviews.findOne({ user_id: MARIA, product_id: tv65._id, title: "Buen tamaño y colores" }, { _id: 1 });
 if (!revJuanTV55)  { throw new Error("Reseña de Juan para SKU-0001 no encontrada"); }
 if (!revMariaTV65) { throw new Error("Reseña de María para SKU-0002 no encontrada"); }
 
-// --- Insertar comentarios ---
+# --- Insertar comentarios ---
 
-// Comentario de Juan en su reseña del TV 55"
+# Comentario de Juan en su reseña del TV 55"
 db.comments.insertOne({
   review_id: revJuanTV55._id,
   product_id: tv55._id,
@@ -707,7 +707,7 @@ db.comments.insertOne({
   updated_at: null
 });
 
-// Comentario de María en su reseña del TV 65"
+# Comentario de María en su reseña del TV 65"
 db.comments.insertOne({
   review_id: revMariaTV65._id,
   product_id: tv65._id,
