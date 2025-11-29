@@ -26,7 +26,7 @@ commentRoute.post('/create', async (req, res) => {
             user_id,
             parent_id: parent_id || null,
             body,
-            status: 'pending'
+            status: 'published'
         })
         
         res.status(201).json(comment)

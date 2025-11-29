@@ -725,7 +725,13 @@ async function moderateReview(reviewId) {
 async function handleReplySubmit(e, productId, reviewId) {
     e.preventDefault();
     const text = document.getElementById('r-text').value;
-    const result = await apiCall('/comments/create', 'POST', { review_id: reviewId, product_id: productId, user_id: state.user._id, body: text });
+    const result = await apiCall('/comments/create', 'POST', {
+        review_id: reviewId,
+        product_id: productId,
+        user_id: state.user._id,
+        parent_id: reviewId,
+        body: text,
+    });
     if (result) {
         closeModal();
         await fetchProductDetails(productId);
