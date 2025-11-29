@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://w7.pngwing.com/pngs/292/876/png-transparent-plug-power-outlet-electricity-cord-pictogram-symbol-red-power-thumbnail.png" type="image/x-icon">
+    <title>ElectroStore | Calidad en tu Hogar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#DC2626', // Rojo
+                        secondary: '#000000', // Negro
+                        light: '#F3F4F6', // Gris muy claro para fondos
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Minimalist Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #DC2626; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- App Container -->
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- El contenido se renderiza dinámicamente aquí -->
+    </div>
+
+    <!-- Modal Container (Hidden by default) -->
+    <div id="modal-container" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 fade-in">
+        <div class="bg-white p-8 rounded shadow-2xl w-full max-w-md relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-primary">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

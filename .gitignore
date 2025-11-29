@@ -7,3 +7,6 @@ env
 
 # NodeJS
 node_modules
+
+# General
+.vscode
