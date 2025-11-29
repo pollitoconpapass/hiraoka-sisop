@@ -69,7 +69,7 @@ reviewRoute.post('/create', async (req, res) => {
             pros,
             cons,
             purchase_verified: !!hasPurchased,
-            status: 'pending'
+            status: 'published'
         })
         
         res.status(201).json(review)
