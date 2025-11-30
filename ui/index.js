@@ -220,7 +220,7 @@ function createFooter() {
     const footer = document.createElement('footer');
     footer.className = "bg-secondary text-white py-6 text-center text-sm mt-auto";
     footer.innerHTML = `
-        <p>&copy; 2024 ElectroStore. Todos los derechos reservados.</p>
+        <p>&copy; 2025 ElectroStore. Todos los derechos reservados.</p>
     `;
     return footer;
 }
@@ -563,10 +563,8 @@ function createOrdersView() {
             adminControls = `
                 <div class="mt-4 pt-4 border-t flex gap-2 justify-end">
                     <select onchange="handleUpdateOrderStatus('${order._id}', this.value)" class="text-xs border p-1 rounded bg-gray-50">
-                        <option value="Pendiente" ${order.order_status === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                        <option value="En Proceso" ${order.order_status === 'En Proceso' ? 'selected' : ''}>En Proceso</option>
                         <option value="Verificado" ${order.order_status === 'Verificado' ? 'selected' : ''}>Verificado</option>
-                        <option value="Enviado" ${order.order_status === 'Enviado' ? 'selected' : ''}>Enviado</option>
-                        <option value="Entregado" ${order.order_status === 'Entregado' ? 'selected' : ''}>Entregado</option>
                         <option value="Cancelado" ${order.order_status === 'Cancelado' ? 'selected' : ''}>Cancelado</option>
                     </select>
                 </div>
@@ -669,7 +667,7 @@ async function handleRegister(e) {
     const name = document.getElementById('auth-name').value;
     const email = document.getElementById('auth-email').value;
     const password = document.getElementById('auth-password').value;
-    const newUser = await apiCall('/users/create', 'POST', { name, email, password_hash: password, role: 'user', status: 'active' });
+    const newUser = await apiCall('/users/create', 'POST', { name, email, password_hash: password, role: 'cliente', status: 'active' });
     if (newUser) {
         alert('Registro exitoso. Inicia sesión.');
         state.currentView = 'login';
