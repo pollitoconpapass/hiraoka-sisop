@@ -87,3 +87,8 @@ Para recordar...
     ```sh
     docker-compose down -v
     ```
+
+- Consultar volumenes de contenedor
+    ```sh
+    docker inspect -f '{{ range .Mounts }}{{ .Source }} -> {{ .Destination }}{{ "\n" }}{{ end }}' NOMBRE_DEL_CONTENEDOR_ORIGINAL
+    ```
